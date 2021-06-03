@@ -1,0 +1,19 @@
+#!/bin/bash
+# This hook is run after this virtualenv is activated.
+
+export PYTHONPATH=/vagrant/mfo/python-backend
+export LOG_PATH=/vagrant/mfo/python-backend/logs
+export LOG_LEVEL=ERROR
+
+# Database connect parameters
+export DB_DRIVER=pgsql
+export DB_NAME=mfo
+export DB_HOST=127.0.0.1
+export DB_PORT=5432
+export DB_USER=rainbowdash
+export DB_PASSWORD=kes43211
+
+# Flask variables
+export FLASK_APP=mfo
+export FLASK_ENV=development
+export JWT_SECRET=cAtwa1kkEy
