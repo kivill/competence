@@ -1,0 +1,12 @@
+*.pyc
+*.log
+*.cpython-36
+.idea/
+.git/
+public/
+static/
+logs/
+.env/postactivate
+.env/predeactivate
+.env/gov.json
+__pycache__/
