@@ -6,7 +6,4 @@
 public/
 static/
 logs/
-.env/postactivate
-.env/predeactivate
-.env/gov.json
 __pycache__/
