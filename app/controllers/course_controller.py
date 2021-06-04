@@ -42,6 +42,8 @@ def create_course():
 def update_course(id):
     data = request.get_json(force=True)
     course = Cource.where('id', id).first()
+    if not course:
+        return jsonify({'message': 'Course not found'}), 404
     course.name = data.get('name', '')
     course.description = data.get('description', '')
     course.start = data.get('start', '')
