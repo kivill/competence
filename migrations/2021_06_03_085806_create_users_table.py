@@ -15,7 +15,8 @@ class CreateUsersTable(Migration):
             table.string('full_name')
             table.string('email').unique()
             table.string('password')
-            table.string('role').default('учитель')
+            table.enum('role', ['директор', 'методист',
+                                'учитель']).default('учитель')
             table.text('token').nullable()
             table.text('refresh_token').nullable()
             table.text('uuid').unique()

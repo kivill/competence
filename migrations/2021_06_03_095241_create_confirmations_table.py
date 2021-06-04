@@ -14,7 +14,8 @@ class CreateConfirmationsTable(Migration):
             table.foreign('user_id').references('id').on('users')
             table.big_integer('competence_id')
             table.foreign('competence_id').references('id').on('competencies')
-            table.string('status').default('processing')
+            table.enum('status', ['processing', 'approved',
+                                  'declined']).default('processing')
 
     def down(self):
         """
