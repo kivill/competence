@@ -2,6 +2,7 @@ from orator import Model
 from orator.orm import belongs_to, has_many, has_many_through, belongs_to_many
 from app.models.confirmation import Confirmation
 
+
 class User(Model):
     __table__ = 'users'
 
@@ -34,8 +35,8 @@ class User(Model):
 
     @belongs_to_many('confirmations', 'user_id', 'competence_id')
     def competences(self):
-        from app.models.confirmation import Confirmation
-        return Confirmation
+        from app.models.competence import Competence
+        return Competence
 
     def get_jwt_identity(self):
         return {

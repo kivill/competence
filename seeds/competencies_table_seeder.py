@@ -6,6 +6,7 @@ from app.models.user import User
 from app.models.competence import Competence
 from app.models.cource import Cource
 from app.models.confirmation import Confirmation
+from app.models.confirmation_file import ConfirmationFile
 from datetime import datetime, timedelta
 
 factory = Factory()
@@ -18,6 +19,7 @@ def competence_factory(faker):
         'description': faker.sentence(nb_words=10),
     }
 
+
 @factory.define(Cource)
 def cource_factory(faker):
     return {
@@ -26,13 +28,23 @@ def cource_factory(faker):
         'start': faker.date_between(start_date='-180d', end_date='-30d')
     }
 
+
 @factory.define(Confirmation)
 def confirmation_factory(faker):
     return {
         'user_id': 1,
         'competence_id': 1,
-        'status': random.choice(['processing', 'approved', 'declined']),
+        'status': random.choices(['processing', 'approved', 'declined'], [1, 1, 1], k=1),
     }
+
+
+@factory.define(ConfirmationFile)
+def confirmation_files_factory(faker):
+    return {
+        'file_url': 'https://cataas.com/cat?width={width}'.format(width=random.randint(20, 40)*10),
+        'confirmation_id': 1,
+    }
+
 
 class CompetenciesTableSeeder(Seeder):
 
@@ -53,6 +65,16 @@ class CompetenciesTableSeeder(Seeder):
             cource.competences().save_many(comps)
 
         for user in users:
-            conf = Collection()
-            com_for_user = random.sample(list(competencies), random.randint(0, competencies.count()))
-            user.competences.save_many(com_for_user)
+            com_for_user = random.sample(
+                list(competencies), random.randint(0, competencies.count()))
+            user.competences().save_many(com_for_user)
+
+        confirmations = Confirmation.all()
+        for confirmation in confirmations:
+            confirmation.status = random.choices(
+                ['processing', 'approved', 'declined'], [1, 4, 1], k=1)[0]
+            conf_file = Collection()
+            for x in range(random.randint(1, 3)):
+                conf_file.push(self.factory(ConfirmationFile).create())
+            confirmation.confirmation_files().save_many(conf_file)
+            confirmation.save()
