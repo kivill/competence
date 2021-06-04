@@ -1,12 +1,8 @@
+import hashlib
 from app.utils.utils import *
 from app.utils.decorators import role_required
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import (jwt_required)
-
-
-import hashlib
-
-
 from app.models.school import School
 
 SchoolController = Blueprint('school', __name__)

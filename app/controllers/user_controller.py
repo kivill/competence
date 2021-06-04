@@ -98,7 +98,7 @@ def update_user(id):
     user = User.where('id', id).first()
     user.password = data.get('password')
     user.save()
-    return jsonify(User.where('id', id).first().serialize()), 200
+    return jsonify(user.serialize()), 200
 
 
 @UserController.route('/create', methods=['POST'])
