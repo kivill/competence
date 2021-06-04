@@ -6,4 +6,5 @@
 public/
 static/
 logs/
+confirmation_files/
 __pycache__/

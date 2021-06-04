@@ -14,7 +14,7 @@ from app.configs.application import config
 
 class FlaskApplication:
     def __init__(self):
-        self.static_folder = '../public/dist/'
+        self.static_folder = '../confirmation_files'
         self.app = Flask(__name__, static_folder=self.static_folder)
 
         self.app.config.update(config)
