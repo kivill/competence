@@ -22,7 +22,7 @@ def users_factory(faker):
         'full_name': faker.name(),
         'email': faker.email(),
         'password': faker.password(length=12),
-        'position': 'учитель',
+        'role': 'учитель',
         'uuid': str(uuid.uuid4())
     }
 
@@ -32,7 +32,7 @@ def admin_users_factory(faker):
     user = factory.raw(User)
 
     user.update({
-        'position': 'директор',
+        'role': 'директор',
     })
 
     return user
@@ -43,7 +43,7 @@ def metodist_users_factory(faker):
     user = factory.raw(User)
 
     user.update({
-        'position': 'методист',
+        'role': 'методист',
     })
 
     return user

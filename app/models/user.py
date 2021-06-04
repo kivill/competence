@@ -15,7 +15,7 @@ class User(Model):
         'full_name',
         'email',
         'password',
-        'position',
+        'role',
         'uuid',
     ]
 
@@ -43,5 +43,5 @@ class User(Model):
             'id': self.id,
             'email': self.email,
             'password': self.password,
-            'position': self.position,
+            'role': self.role,
         }

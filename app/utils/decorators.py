@@ -64,12 +64,13 @@ def admin_required(fn):
 
     return wrapper
 
+
 def role_required(*role_names):
     def wrapper(view_function):
         @wraps(view_function)
         def decorator(*args, **kwargs):
             identity = get_jwt_identity()
-            if not identity['position'] in role_names:
+            if not identity['role'] in role_names:
                 return jsonify({'message': 'Permission denied'}), 403
             else:
                 return view_function(*args, **kwargs)
@@ -84,6 +85,7 @@ class cached_property(object):
     :param func:
     :return: wraps
     """
+
     def __init__(self, func):
         self.func = func
 
