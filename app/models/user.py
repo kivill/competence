@@ -44,4 +44,5 @@ class User(Model):
             'email': self.email,
             'password': self.password,
             'role': self.role,
+            'uuid': self.uuid,
         }
