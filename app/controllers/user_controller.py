@@ -111,7 +111,7 @@ def create_user():
         full_name=data.get('full_name'),
         email=data.get('email'),
         password=data.get('password'),
-        role=data.get('position'),
+        role=data.get('role'),
         uuid=str(uuid.uuid4())
     )
-    return user, 200
+    return jsonify(user.serialize()), 200

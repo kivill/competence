@@ -8,7 +8,7 @@ class User(Model):
 
     __timestamps__ = ['created_at', 'updated_at']
 
-    __hidden__ = ['password']
+    # __hidden__ = ['password']
 
     __fillable__ = [
         'school_id',
