@@ -1,3 +1,18 @@
+sudo apt-get update -y;
+sudo apt-get upgrade -y;
+# Postgres repository
+sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main";
+sudo wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - ;
+sudo apt-get update -y;
+sudo apt-get install git postgresql-9.6 virtualenv virtualenvwrapper libpq-dev libffi-dev python3-dev build-essential libssl-dev supervisor nginx ufw memcached libxmlsec1-dev pkg-config -y;
+# Installing NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash ;
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source ~/.profile
+nvm install 14
+
 # Creating DB
 sudo su - postgres -c "psql -c \"CREATE USER admin WITH PASSWORD '2665640';\""
 sudo su - postgres -c "psql -c \" ALTER USER "admin" with SUPERUSER;\""
